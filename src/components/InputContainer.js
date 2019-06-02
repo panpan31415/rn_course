@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View,Text, TextInput, Button, StyleSheet,TouchableOpacity } from "react-native";
 export default InputContainer = (props) => {
     return (<View style={styles.inputContainer} >
         <TextInput
@@ -7,7 +7,7 @@ export default InputContainer = (props) => {
             style={styles.textInput}
             onChangeText={props.handleInput}
         />
-        <Button title={"ADD"} style={styles.button} onPress={props.handleAdd} />
+        <TouchableOpacity onPress={props.handleAdd} style={styles.add}><Text>{"ADD"}</Text></TouchableOpacity>
     </View>);
 }
 
@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         color: "black"
     },
-    button: {
-        flex: 1,
-        height: 40,
-        width: "50%",
-        alignItems: "center"
+    add: {
+        display:"flex",
+        justifyContent:"center",
+        height:40,
+        width: "20%",
+        alignItems: "center",
+        backgroundColor:"rgba(222,222,222,0.5)",
+        color:"blue"
     },
-
 });
