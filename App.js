@@ -1,34 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
-  TextInput,
   View,
-  Button
-} from "react-native";
 
-const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
-});
+} from "react-native";
+import InputContainer from "./src/components/InputContainer"
+import OutputItems from "./src/components/OutputItems"
+
+
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text:"",
-      items:[]
+      text: "",
+      items: []
     };
   }
   handleInput = text => {
@@ -36,31 +23,24 @@ export default class App extends Component {
       text
     });
   };
-  handleAdd = ()=>{
-    if(this.state.text === ""){
+  handleAdd = () => {
+    if (this.state.text === "") {
       return;
-    }else{
-      this.setState((prevState)=>{
+    } else {
+      this.setState((prevState) => {
         return {
-          text:"",
-          items:[...prevState.items,prevState.text]
+          text: "",
+          items: [...prevState.items, prevState.text]
         }
       });
     }
   }
   render() {
-    const items = this.state.items.map((item,i)=>(<Text key={i}>{item}</Text>));
+    const items = this.state.items.map((item, i) => (<Text key={i}>{item}</Text>));
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            value={this.state.text}
-            style={styles.textInput}
-            onChangeText={this.handleInput}
-          />
-          <Button title={"ADD"} style={styles.btn} onPress={this.handleAdd}/>
-        </View>
-        <View>{items}</View>
+        <InputContainer handleInput = {this.handleInput} handleAdd={this.handleAdd} text={this.state.text}/>
+        <OutputItems items={items} />
       </View>
     );
   }
@@ -74,28 +54,5 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     backgroundColor: "#fff",
     padding: 20,
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  textInput: {
-    height: 40,
-    width: "70%",
-    borderBottomWidth: 2,
-    color: "black"
-  },
-  btn: {
-    flex: 1,
-    height: 40,
-    width: "50%",
-    alignItems: "center"
-  },
-  inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%"
-
   }
 });
