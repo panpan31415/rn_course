@@ -1,52 +1,53 @@
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 export default (ListItems = ({ items, remove }) => {
-  const itemLists = items.map((item, i) => {
-    return (
-      <View key={i} style={styles.ListItem}>
-         <Text style={styles.ListText} > {item} </Text>
-         <TouchableOpacity onPress={()=>{remove(i)}} >
-           <Text style={styles.Remove}>{"X"}</Text>
-         </TouchableOpacity>
-      </View>
-       
-   
-    );
-  });
+  const itemLists = items.map((item, i) => (
+    <View key={i} style={styles.ListItem}>
+      <Text style={styles.ListText}> {item} </Text>
+      <TouchableOpacity
+        style={styles.Remove}
+        onPress={() => {
+          remove(i);
+        }}
+      >
+        <Text>{"Del"}</Text>
+      </TouchableOpacity>
+    </View>
+  ));
   return <View style={styles.ListContainer}>{itemLists}</View>;
 });
 
 const styles = StyleSheet.create({
   ListContainer: {
-    display:"flex",
-    justifyContent:"flex-start",
+    display: "flex",
+    justifyContent: "flex-start",
     padding: 0,
-    width: "100%"
+    width: "100%",
+ 
   },
   ListItem: {
-    display:"flex",
+    display: "flex",
     width: "100%",
-    flexDirection:"row",
-    justifyContent:"space-between",
-    alignItems:"center",
-    height:40,
-    fontSize:35,
-    marginTop:10,
-
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 40,
+    fontSize: 40,
+    marginTop: 10
   },
-  ListText:{
-    width:"70%",
+  ListText: {
+    height: 40,
+    width: "70%",
     borderBottomWidth:1,
-    borderColor:"blue",
+    textAlign:"left",
+    lineHeight:45
   },
-  Remove:{
-    display:"flex",
-    flexDirection:"row",
-    height:40,
-    width:"20%",
-    justifyContent:"center",
-    alignItems:"center",
-    backgroundColor:"red"
-
+  Remove: {
+    width: "20%",
+    backgroundColor: "#ccc",
+    height: 40,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
