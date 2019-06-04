@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {ScrollView, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 export default (ListItems = ({ items, remove }) => {
   const itemLists = items.map((item, i) => (
     <View key={i} style={styles.ListItem}>
@@ -14,13 +14,13 @@ export default (ListItems = ({ items, remove }) => {
       </TouchableOpacity>
     </View>
   ));
-  return <View style={styles.ListContainer}>{itemLists}</View>;
+  return <ScrollView style={styles.ListContainer} >{itemLists}</ScrollView>;
 });
 
 const styles = StyleSheet.create({
   ListContainer: {
     display: "flex",
-    justifyContent: "flex-start",
+    flex:1,
     padding: 0,
     width: "100%",
  
