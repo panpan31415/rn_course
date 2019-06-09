@@ -7,22 +7,23 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "",
+      url: "",
       items: []
     };
   }
-  handleInput = text => {
+  handleInput = url => {
     this.setState({
-      text
+      ...this.state,
+      url
     });
   };
   handleAdd = () => {
-    if (this.state.text === "") {
+    if (this.state.url === "") {
       return;
     } else {
       this.setState(prevState => ({
-        text: "",
-        items: [...prevState.items, prevState.text]
+        url: "",
+        items: [...prevState.items, {imgUrl:this.state.url}]
       }));
     }
   };
@@ -33,17 +34,14 @@ export default class App extends Component {
     }));
   };
   render() {
-    const items = this.state.items.map((item, i) => (
-      <Text key={i}>{item}</Text>
-    ));
     return (
       <View style={styles.container}>
         <InputContainer
           handleInput={this.handleInput}
           handleAdd={this.handleAdd}
-          text={this.state.text}
+          url={this.state.url}
         />
-        <OutputItems items={items} remove={this.remove} />
+        <OutputItems items={this.state.items} remove={this.remove} />
       </View>
     );
   }

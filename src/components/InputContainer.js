@@ -3,7 +3,7 @@ import { View,Text, TextInput, Button, StyleSheet,TouchableOpacity } from "react
 export default InputContainer = (props) => {
     return (<View style={styles.inputContainer} >
         <TextInput
-            value={props.text}
+            value={props.url}
             style={styles.textInput}
             onChangeText={props.handleInput}
         />
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
     },
     textInput: {
-        height: 40,
+        height: 50,
         width: "70%",
         borderBottomWidth: 2,
         color: "black"
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     add: {
         display:"flex",
         justifyContent:"center",
-        height:40,
+        height:50,
         width: "20%",
         alignItems: "center",
         backgroundColor:"rgba(222,222,222,0.5)",
