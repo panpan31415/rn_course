@@ -1,21 +1,24 @@
 import React, { Fragment } from "react";
-import {ScrollView, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-export default (ListItems = ({ items, remove }) => {
-  const itemLists = items.map((item, i) => (
-    <View key={i} style={styles.ListItem}>
-      <Text style={styles.ListText}> {item} </Text>
+import {FlatList, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+export default  ({ items, remove }) => {
+
+  return <FlatList style={styles.ListContainer} 
+  data={items.map((item,i)=>({
+    key:i+"",value:item
+  }))} 
+  renderItem={({item})=>(<View  style={styles.ListItem}>
+      <Text style={styles.ListText}> {item.value} </Text>
       <TouchableOpacity
         style={styles.Remove}
         onPress={() => {
-          remove(i);
+          remove(parseInt(item.key));
         }}
       >
         <Text>{"Del"}</Text>
       </TouchableOpacity>
-    </View>
-  ));
-  return <ScrollView style={styles.ListContainer} >{itemLists}</ScrollView>;
-});
+    </View>)}
+  />;
+};
 
 const styles = StyleSheet.create({
   ListContainer: {
